@@ -71,5 +71,3 @@ kubectl apply -f springboot-app-deployment.yml
 docker ps -a
 ```
 
-## License
-[Winifred Zenabuin](https://www.linkedin.com/in/winifred-zenabuin-1b430b194/)
