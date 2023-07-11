@@ -1,7 +1,8 @@
-# Terraform
+# Project Overview
 I have used terraform as an Infrastructure as code (IaC) tool to provision my infrasctructure on AWS. Provisioned infrastructure inlude;
 VPCs, EKS Clusters, Private and Public subnets, Iinternet Gateway, Routing Tables, SECURITY GROUP, etc.
-https://github.com/WinifredZenabuin/UnityProject/blob/master/CI-CD%20Intergration.JPG
+https://github.com/oladaolu/TformProject/blob/master/CI-CD%20Intergration.JPG
+
 # EKS Getting Started Guide Configuration
 
 This is the full configuration from https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html
@@ -11,18 +12,21 @@ See that guide for additional information.
 NOTE: This full configuration utilizes the [Terraform http provider](https://www.terraform.io/docs/providers/http/index.html) to call out to icanhazip.com to determine your local workstation external IP for easily configuring EC2 Security Group access to the Kubernetes servers. 
 
 # Provision EKS Infrastructure on AWS using Terraform
+To provision the EKS infrastructure on AWS, I followed the guidelines provided in the EKS Getting Started Guide. This comprehensive guide helped me configure the necessary components for creating and managing an EKS cluster. By following the steps outlined in the guide, I successfully set up and deployed an EKS cluster, enabling efficient orchestration and management of containerized applications
+
 terraform init
 terraform plan
 terraform apply
 terraform destory
 
-# Jenkins
+# Jenkins Continuous Integration and Deployment
+To achieve continuous integration and continuous deployment (CI/CD), I utilized Jenkins as the automation server. I implemented a Jenkins pipeline script that automated various stages of the software delivery process. This included building the application using Maven, performing automated tests using Selenium, validating the code quality using SonarQube, and uploading the build artifacts to a Nexus private artifact repository. Jenkins enabled streamlined and efficient CI/CD workflows, ensuring that applications were built, tested, and deployed seamlessly.
 Jenkins will enable us to achieve Continuos Integration and Continuous Deployment. Our Jenkins pipeline-script  will ensure once the application is developed or modified it is automatically build using maven, tested using selenium, validated using SonarQube. The build artifacts will be uploaded to Nexus Private aritifact repository. 
 # GitHub
-The scripts used for this project can be clone from https://github.com/WinifredZenabuin/UnityProject.
-I also confihured github-webhook so that ounce the source code is modified jenkins will srtigger a build.  
+The source code and scripts for this project are stored in a GitHub repository. You can access the repository at https://github.com/WinifredZenabuin/UnityProject. To enable automated builds triggered by source code modifications, I configured GitHub webhooks. This integration allowed Jenkins to automatically initiate a build processwhenever changes were pushed to the repository, ensuring a seamless development and deployment workflow.  
+
 # Dockerfile
-we are also using the created package (artifacts) to create a docker imgae for our application. Here docker is used for containerisation.  
+For containerization of the application, I leveraged Docker, a popular containerization tool. Using the provided Dockerfile, I created a Docker image that encapsulatedthe application code and its dependencies. This containerized approach allowed for consistent and portable deployment of the application, ensuring that it could run reliably across different environments. With Docker, I achieved efficient and isolated application deployments, simplifying the management and scalability of the application. We are also using the created package (artifacts) to create a docker imgae for our application. Here docker is used for containerisation.  
 ```docker
 docker build -t legah2045/springboot-app .
 ```
