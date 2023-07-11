@@ -4,7 +4,7 @@ def mavenHome = tool name: "maven3.6.3"
     
     stage("1. git clone")
     {
-       git credentialsId: 'gitCredentials', url: 'https://github.com/WinifredZenabuin/UnityProject.git'
+       git credentialsId: 'gitCredentials', url: 'https://github.com/oladaolu/TformProject.git'
     }
     
     stage("2. Maven Build")
@@ -31,10 +31,10 @@ def mavenHome = tool name: "maven3.6.3"
     stage('6. Push Docker Image to Docker Hub')
     {
        withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
-       sh " docker login -u legah2045 -p ${DockerHubCredentials} "
+       sh " docker login -u oladaolu -p ${DockerHubCredentials} "
      }
 
-        sh " docker push legah2045/springboot-app "
+        sh " docker push oladaolu/springboot "
     }
     
     stage('7. Deploy to EKS Kubernetes Cluster')
@@ -51,10 +51,10 @@ def mavenHome = tool name: "maven3.6.3"
 
     stage('8 EmailNotification')
  {
- mail bcc: 'abihngeng@yahoo.com', body: '''Build is over
+ mail bcc: 'ooolutobi@gmail.com', body: '''Build is over
  Thanks,
- Abihngeng Zenabuin,
- 437 778 2285.''', cc: 'abihngeng@yahoo.com', from: '', replyTo: '', subject: 'Build is over!!', to: 'abihngeng@gmail.com'
+ Olu Oludare,
+ from: '', replyTo: '', subject: 'Build is over!!', to: 'abihngeng@gmail.com'
  }
  */
  
