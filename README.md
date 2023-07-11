@@ -1,73 +1,27 @@
-# Terraform
-I have used terraform as an Infrastructure as code (IaC) tool to provision my infrasctructure on AWS. Provisioned infrastructure inlude;
-VPCs, EKS Clusters, Private and Public subnets, Iinternet Gateway, Routing Tables, SECURITY GROUP, etc.
-https://github.com/WinifredZenabuin/UnityProject/blob/master/CI-CD%20Intergration.JPG
-# EKS Getting Started Guide Configuration
+Project Overview
+This repository demonstrates an end-to-end DevOps workflow for deploying a scalable and resilient application infrastructure using Terraform, Jenkins, Docker, and Kubernetes. The project aims to streamline the development and deployment process, enabling rapid and efficient delivery of applications.
 
-This is the full configuration from https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html
+Terraform
+The terraform/ directory contains the necessary Terraform configurations to provision and manage the infrastructure on AWS. It includes definitions for VPCs, EC2 instances, security groups, and load balancers. With Terraform, infrastructure provisioning becomes automated, repeatable, and version-controlled.
 
-See that guide for additional information.
+Jenkins
+The jenkins/ directory houses the Jenkins pipeline scripts responsible for continuous integration and continuous deployment (CI/CD). These scripts facilitate the building, testing, and packaging of applications, ensuring high-quality deliverables. Jenkins enables seamless integration with various tools and platforms, empowering efficient and reliable CI/CD workflows.
 
-NOTE: This full configuration utilizes the [Terraform http provider](https://www.terraform.io/docs/providers/http/index.html) to call out to icanhazip.com to determine your local workstation external IP for easily configuring EC2 Security Group access to the Kubernetes servers. 
+Docker
+The docker/ directory contains the Dockerfile for containerizing the application. By encapsulating the application and its dependencies in a Docker image, we achieve consistency and portability across different environments. Docker enables simplified deployment and management of applications in isolated containers.
 
-# Provision EKS Infrastructure on AWS using Terraform
-terraform init
-terraform plan
-terraform apply
-terraform destory
+Kubernetes
+The kubernetes/ directory holds the Kubernetes manifests for deploying the application on a Kubernetes cluster. It includes deployment configurations, services, ingress rules, and persistent volumes. Kubernetes provides orchestration capabilities, allowing for automatic scaling, fault tolerance, and seamless management of containerized applications.
 
-# Jenkins
-Jenkins will enable us to achieve Continuos Integration and Continuous Deployment. Our Jenkins pipeline-script  will ensure once the application is developed or modified it is automatically build using maven, tested using selenium, validated using SonarQube. The build artifacts will be uploaded to Nexus Private aritifact repository. 
-# GitHub
-The scripts used for this project can be clone from https://github.com/WinifredZenabuin/UnityProject.
-I also confihured github-webhook so that ounce the source code is modified jenkins will srtigger a build.  
-# Dockerfile
-we are also using the created package (artifacts) to create a docker imgae for our application. Here docker is used for containerisation.  
-```docker
-docker build -t legah2045/springboot-app .
-```
-# Kubernetes Manifest files
-This files will deploy a "Spring-boot-app" with a MongoDB. Our application and database is deployed using Replicat Set, ConFigMap, Ingress Controller, Secrets, PVC, StorageClass, HPA, and Cluster-Auto-Scaling.
-We have also deployed Grafana and Prometheus using Helm Charts. This will monitor our applications, send alerts and as such we are going to achieve high availability.
-```t
-kubectl create deployment autoscaler-demo --image=nginx
-kubectl get pods --all-namespaces | grep Running | wc -l
-kubectl get nodes -o yaml | grep pods
-kubectl scale deployment autoscaler-demo --replicas=20
-```
+Getting Started
+To get started with this project, follow the steps below:
 
-# Build Project Using Maven
+Clone the repository: git clone https://github.com/your-username/your-repo.git
+Provision the infrastructure using Terraform: terraform init, terraform plan, terraform apply
+Configure Jenkins and set up the necessary pipelines based on the scripts in the jenkins/ directory.
+Build the Docker image: docker build -t your-image-name:your-tag .
+Deploy the application on Kubernetes: kubectl apply -f kubernetes/
+For detailed instructions and further documentation, please refer to the relevant directories within this repository.
 
-Maven is java based build tool to generate executable 
-
-packages(jar, ear,war) for java based projects.
-
-```bash
-mvn clean package
-```
-
-## Create Docker Image
-Docker is a continerization tool.Using docker we can deploy our applications as 
-
-containers using docker images. Containers contains application code and also the softwares,
-
-config files whatever is required for our application to run.
-
-Create docker image using Dockerfile
-
-
-```docker
-docker build -t legah2045/springboot-app .
-```
-
-## Deploy Application Using EKS Cluster 
-
-```kubectl apply 
-kubectl apply -f springboot-app-deployment.yml
-```
-
-## List Docker Containers
-```docker
-docker ps -a
-```
-
+Contribution
+Contributions to this project are welcome! If you encounter any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
