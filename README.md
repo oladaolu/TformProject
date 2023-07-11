@@ -1,6 +1,7 @@
 # Project Overview
-This repository demonstrates an end-to-end DevOps workflow for deploying a scalable and resilient application infrastructure using Terraform, Jenkins, Docker, and Kubernetes. The project aims to streamline the development and deployment process, enabling rapid and efficient delivery of applications.
+This repository demonstrates an end-to-end DevOps workflow for deploying a scalable and resilient application infrastructure using Terraform, Jenkins, Docker,and Kubernetes. The project aims to streamline the development and deployment process, enabling rapid and efficient delivery of applications.
 https://github.com/oladaolu/TformProject/blob/master/CI-CD%20Intergration.JPG
+
 # EKS Getting Started Guide Configuration
 
 The terraform files contains the necessary Terraform configurations to provision and manage the infrastructure on AWS. It includes definitions for VPCs, EC2 instances, security groups, and load balancers. With Terraform, infrastructure provisioning becomes automated, repeatable, and version-controlled.
@@ -9,7 +10,7 @@ This is the full configuration from https://www.terraform.io/docs/providers/aws/
 
 See that guide for additional information.
 
-NOTE: This full configuration utilizes the [Terraform http provider](https://www.terraform.io/docs/providers/http/index.html) to call out to icanhazip.com to determine your local workstation external IP for easily configuring EC2 Security Group access to the Kubernetes servers. 
+NOTE: This full configuration utilizes the [Terraform http provider](https://www.terraform.io/docs/providers/http/index.html) to call out to icanhazip.com to determine your local workstation external IP for easily configuring EC2 Security Group access to the Kubernetes servers.
 
 # Provision EKS Infrastructure on AWS using Terraform
 terraform init
@@ -18,13 +19,15 @@ terraform apply
 terraform destory
 
 # Jenkins
-directory houses the Jenkins pipeline scripts responsible for continuous integration and continuous deployment (CI/CD). These scripts facilitate the building, testing, and packaging of applications, ensuring high-quality deliverables. Jenkins enables seamless integration with various tools and platforms, empowering efficient and reliable CI/CD workflows.Jenkins will enable us to achieve Continuos Integration and Continuous Deployment. Our Jenkins pipeline-script  will ensure once the application is developed or modified it is automatically build using maven, tested using selenium, validated using SonarQube. The build artifacts will be uploaded to Nexus Private aritifact repository. 
+
+This houses the Jenkins pipeline scripts responsible for continuous integration and continuous deployment (CI/CD). These scripts facilitate the building, testing, and packaging of applications, ensuring high-quality deliverables. Jenkins enables seamless integration with various tools and platforms, empowering efficient and reliable CI/CD workflows.Jenkins will enable us to achieve Continuos Integration and Continuous Deployment. Our Jenkins pipeline-script  will ensureonce the application is developed or modified it is automatically build using maven, tested using selenium, validated using SonarQube. The build artifacts will be uploaded to Nexus Private aritifact repository. 
 
 # GitHub
 The scripts used for this project can be clone from https://github.com/oladaolu/TformProject.
-I also configured github-webhook so that ounce the source code is modified jenkins will srtigger a build.  
+I also configured github-webhook so that once the source code is modified jenkins will srtigger a build.
+
 # Dockerfile
-we are also using the created package (artifacts) to create a docker imgae for our application. Here docker is used for containerisation.  
+we are also using the created package (artifacts) to create a docker imgae for our application. Here docker is used for containerisation.
 ```docker
 docker build -t legah2045/springboot-app .
 ```
@@ -40,7 +43,7 @@ kubectl scale deployment autoscaler-demo --replicas=20
 
 # Build Project Using Maven
 
-Maven is java based build tool to generate executable 
+Maven is java based build tool to generate executable
 
 packages(jar, ear,war) for java based projects.
 
@@ -49,10 +52,9 @@ mvn clean package
 ```
 
 ## Create Docker Image
-Docker is a continerization tool.Using docker we can deploy our applications as 
+Docker is a continerization tool.Using docker we can deploy our applications as
 
 containers using docker images. Containers contains application code and also the softwares,
-
 config files whatever is required for our application to run.
 
 Create docker image using Dockerfile
@@ -62,9 +64,9 @@ Create docker image using Dockerfile
 docker build -t legah2045/springboot-app .
 ```
 
-## Deploy Application Using EKS Cluster 
+## Deploy Application Using EKS Cluster
 
-```kubectl apply 
+```kubectl apply
 kubectl apply -f springboot-app-deployment.yml
 ```
 
